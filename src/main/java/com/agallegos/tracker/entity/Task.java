@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Task extends AuditModel{
 
+    //TODO add status for tasks
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO) //TODO refactor generation type
     private Long id;

@@ -27,7 +27,7 @@ public abstract class AuditModel implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    @Column(name = "created_by", nullable = true) //TODO change to nullable false when we have users and security
+    @Column(name = "created_by", nullable = true) //TODO change to nullable false when we have users and security, and add updatedBy property
     @CreatedBy
     private String createdBy;
 

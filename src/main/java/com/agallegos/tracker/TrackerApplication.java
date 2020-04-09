@@ -8,6 +8,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 public class TrackerApplication {
 
+    //TODO add security
+    //TODO add internationalization
+    //TODO add error hanndling
+    //TODO add integration tests
     public static void main(String[] args) {
         SpringApplication.run(TrackerApplication.class, args);
     }
