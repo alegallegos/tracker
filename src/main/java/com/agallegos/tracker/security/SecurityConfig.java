@@ -16,6 +16,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private String apiAudience;
     @Value(value = "${auth0.issuer}")
     private String issuer;
+    @Value(value = "${activateH2Console}")
+    private boolean activateH2Console;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -24,5 +26,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .configure(http)
                 .cors().and().csrf().disable().authorizeRequests()
                 .anyRequest().permitAll();
+
+        if (activateH2Console) {
+            http.headers().frameOptions().disable();
+        }
     }
 }

@@ -11,7 +11,6 @@ public class TrackerApplication {
     //TODO add internationalization
     //TODO add error hanndling
     //TODO add integration tests
-    //TODO preload data
     public static void main(String[] args) {
         SpringApplication.run(TrackerApplication.class, args);
     }
