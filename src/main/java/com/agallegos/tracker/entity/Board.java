@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Board {
+public class Board extends AuditModel{
 
     //TODO add restrictions to properties and validations
     @Id
