@@ -7,32 +7,32 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public abstract class AbstractEntityController<T> {
+public abstract class AbstractCRUDController<T> {
 
-    private final AbstractService<T> abstractService;
+    protected final AbstractService<T> service;
 
-    public AbstractEntityController(AbstractService<T> abstractService) {
-        this.abstractService = abstractService;
+    public AbstractCRUDController(AbstractService<T> service) {
+        this.service = service;
     }
 
     @PostMapping("/create")
-    public ResponseEntity<T> create(@RequestBody T entity) {
-        return new ResponseEntity<T>(abstractService.save(entity), HttpStatus.OK);
+    public ResponseEntity<T> create(@RequestBody T entity) { //TODO check @Valid annotation
+        return new ResponseEntity<T>(service.save(entity), HttpStatus.OK);
     }
 
     @PutMapping("/update")
     public ResponseEntity<T> update(@RequestBody T entity) {
-        return new ResponseEntity<T>(abstractService.update(entity), HttpStatus.OK);
+        return new ResponseEntity<T>(service.update(entity), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<T> delete(@RequestBody T entity) {
-        abstractService.delete(entity);
+        service.delete(entity);
         return new ResponseEntity<T>(HttpStatus.OK);
     }
 
-    @GetMapping("/list")
+    @GetMapping("/list") //TODO check Pageable
     public ResponseEntity<List<T>> list() {
-        return new ResponseEntity<List<T>>(abstractService.list(), HttpStatus.OK);
+        return new ResponseEntity<List<T>>(service.list(), HttpStatus.OK);
     }
 }
