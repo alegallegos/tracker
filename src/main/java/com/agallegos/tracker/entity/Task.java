@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Task extends AuditModel{
+public class Task extends AuditModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

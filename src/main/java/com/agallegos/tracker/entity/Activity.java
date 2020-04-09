@@ -27,7 +27,9 @@ public class Activity { //TODO check if we can remove this entity
 
         ActivityType(String c) {
         }
-    };
+    }
+
+    ;
 
     public Long getId() {
         return id;

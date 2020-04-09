@@ -1,7 +1,6 @@
 package com.agallegos.tracker.controlller;
 
 import com.agallegos.tracker.entity.Status;
-import com.agallegos.tracker.service.AbstractService;
 import com.agallegos.tracker.service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 

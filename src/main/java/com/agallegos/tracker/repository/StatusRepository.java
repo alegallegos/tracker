@@ -4,5 +4,5 @@ import com.agallegos.tracker.entity.Status;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StatusRepository extends EntityRepository<Status>{
+public interface StatusRepository extends EntityRepository<Status> {
 }
