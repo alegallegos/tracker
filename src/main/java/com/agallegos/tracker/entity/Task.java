@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Task extends AuditModel{
 
-    //TODO add status for tasks
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +15,9 @@ public class Task extends AuditModel{
 
     @ManyToOne(optional = false, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private TaskType type;
+
+    @ManyToOne(optional = false, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private Status status;
 
     @ManyToOne(optional = false, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private Board board;
@@ -58,5 +60,13 @@ public class Task extends AuditModel{
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
