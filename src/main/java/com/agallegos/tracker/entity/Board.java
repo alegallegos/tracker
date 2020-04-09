@@ -1,23 +1,19 @@
 package com.agallegos.tracker.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-public class Task {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @NotNull
     private String name;
     private String description;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private TaskType type;
-
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Board board;
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     public Long getId() {
         return id;
@@ -43,11 +39,11 @@ public class Task {
         this.description = description;
     }
 
-    public TaskType getType() {
-        return type;
+    public List<Task> getTasks() {
+        return tasks;
     }
 
-    public void setType(TaskType type) {
-        this.type = type;
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
