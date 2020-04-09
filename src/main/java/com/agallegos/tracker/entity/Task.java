@@ -8,7 +8,7 @@ public class Task extends AuditModel{
 
     //TODO add status for tasks
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) //TODO refactor generation type
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String name;

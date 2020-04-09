@@ -13,7 +13,7 @@ public class Comment extends AuditModel {
     //Maybe later we can use MappedSuperClass as in AuditModel to use comments in other entities besides Task
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

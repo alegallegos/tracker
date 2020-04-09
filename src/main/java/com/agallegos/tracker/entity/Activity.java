@@ -10,7 +10,7 @@ import java.util.Date;
 public class Activity { //TODO check if we can remove this entity
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)

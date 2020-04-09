@@ -11,7 +11,7 @@ public class Board extends AuditModel{
     //TODO add restrictions to properties and validations
     //TODO add list of allowed users and list of admin users when security is ready
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
