@@ -1,7 +1,6 @@
 package com.agallegos.tracker.service;
 
 import com.agallegos.tracker.entity.Board;
-import com.agallegos.tracker.entity.Task;
 import com.agallegos.tracker.repository.BoardRepository;
 import com.agallegos.tracker.repository.EntityRepository;
 import com.agallegos.tracker.repository.TaskRepository;
@@ -20,12 +19,5 @@ public class BoardService extends AbstractService<Board> {
 
     public EntityRepository<Board> getRepository() {
         return repository;
-    }
-
-    public Task addTask(Long boardId, Task task) {
-        return repository.findById(boardId).map(board -> {
-            task.setBoard(board);
-            return taskRepository.save(task);
-        }).orElseThrow(() -> new ResourceNotFoundException("PostId " + boardId + " not found"));
     }
 }
