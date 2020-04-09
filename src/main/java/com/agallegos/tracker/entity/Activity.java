@@ -1,12 +1,13 @@
 package com.agallegos.tracker.entity;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Activity {
+public class Activity { //TODO check if we can remove this entity
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,7 +17,8 @@ public class Activity {
     @Column(name = "at", nullable = false, updatable = false)
     @CreatedDate
     private Date at;
-    private String by; //TODO add when users are implemented
+    @CreatedBy
+    private String by;
     private ActivityType type;
 
     public enum ActivityType {

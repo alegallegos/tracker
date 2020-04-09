@@ -3,10 +3,11 @@ package com.agallegos.tracker.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*; //TODO remove * and use specific classes
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -18,18 +19,22 @@ import java.util.Date;
 )
 public abstract class AuditModel implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "updated_at", nullable = false)
+    @Column(nullable = false)
     @LastModifiedDate
     private Date updatedAt;
 
-    @Column(name = "created_by", nullable = true) //TODO change to nullable false when we have users and security, and add updatedBy property
+    @Column(nullable = false, updatable = false)
     @CreatedBy
     private String createdBy;
+
+    @Column(nullable = false)
+    @LastModifiedBy
+    private String updatedBy;
 
     public Date getCreatedAt() {
         return createdAt;
@@ -53,6 +58,14 @@ public abstract class AuditModel implements Serializable {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
     }
 }
 

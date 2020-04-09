@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Comment extends AuditModel {
 
-    //TODO maybe later we can use MappedSuperClass as in AuditModel to use comments in other entities besides Task
+    //Maybe later we can use MappedSuperClass as in AuditModel to use comments in other entities besides Task
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
