@@ -1,7 +1,9 @@
 package com.agallegos.tracker.service;
 
+import com.agallegos.tracker.entity.AuditModel;
 import com.agallegos.tracker.repository.EntityRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractService<E> {
@@ -22,5 +24,17 @@ public abstract class AbstractService<E> {
 
     public List<E> list() {
         return getRepository().findAll();
+    }
+
+    public List<E> getHistory(Long id) {
+
+        List<E> historyList = new ArrayList<>();
+
+        getRepository().findRevisions(id).get().forEach(x -> {
+            //x.getEntity().setEditVersion(x.getMetadata()); //TODO fix setEditVersion
+            historyList.add(x.getEntity());
+        });
+
+        return historyList;
     }
 }

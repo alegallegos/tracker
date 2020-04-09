@@ -40,4 +40,10 @@ public abstract class AbstractCRUDController<T> {
     public ResponseEntity<List<T>> list() {
         return new ResponseEntity<List<T>>(service.list(), HttpStatus.OK);
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/history/{id}") //TODO check Pageable
+    public ResponseEntity<List<T>> history(@PathVariable Long id) {
+        return new ResponseEntity<List<T>>(service.getHistory(id), HttpStatus.OK);
+    }
 }
