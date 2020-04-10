@@ -1,6 +1,5 @@
 package com.agallegos.tracker.service;
 
-import com.agallegos.tracker.entity.AuditModel;
 import com.agallegos.tracker.repository.EntityRepository;
 
 import java.util.ArrayList;

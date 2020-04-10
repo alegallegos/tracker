@@ -1,6 +1,7 @@
 package com.agallegos.tracker.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.envers.NotAudited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -18,20 +19,24 @@ import java.util.Date;
         allowGetters = true
 )
 public abstract class AuditModel implements Serializable {
+    @NotAudited
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     @CreatedDate
     private Date createdAt;
 
+    @NotAudited
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     @LastModifiedDate
     private Date updatedAt;
 
+    @NotAudited
     @Column(nullable = false, updatable = false)
     @CreatedBy
     private String createdBy;
 
+    @NotAudited
     @Column(nullable = false)
     @LastModifiedBy
     private String updatedBy;
