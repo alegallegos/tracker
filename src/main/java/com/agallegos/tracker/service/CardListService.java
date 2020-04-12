@@ -30,8 +30,7 @@ public class CardListService extends AbstractService<CardList> {
     }
 
     public List<CardList> getByBoard(Long boardId) {
-        //TODO optimize
-        return this.repository.findAll().stream().filter(cardList -> cardList.getBoard().getId().equals(boardId)).collect(Collectors.toList());
+        return this.repository.findByBoardId(boardId);
     }
 
     @Override
