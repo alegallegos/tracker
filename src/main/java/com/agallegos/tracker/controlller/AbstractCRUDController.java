@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 public abstract class AbstractCRUDController<T> {
 
     protected final AbstractService<T> service;
@@ -16,32 +17,38 @@ public abstract class AbstractCRUDController<T> {
         this.service = service;
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public ResponseEntity<T> create(@RequestBody T entity) { //TODO check @Valid annotation
         return new ResponseEntity<T>(service.save(entity), HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @PutMapping("/update")
     public ResponseEntity<T> update(@RequestBody T entity) {
         return new ResponseEntity<T>(service.update(entity), HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
-    @DeleteMapping("/delete")
-    public ResponseEntity<T> delete(@RequestBody T entity) {
-        service.delete(entity);
+//    @PreAuthorize("isAuthenticated()")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<T> delete(@PathVariable Long id) {
+        service.delete(id);
         return new ResponseEntity<T>(HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/get/{id}")
+    public ResponseEntity<T> get(@PathVariable Long id) {
+        return new ResponseEntity<T>(service.get(id), HttpStatus.OK);
+    }
+
+//    @PreAuthorize("isAuthenticated()")
     @GetMapping("/list") //TODO check Pageable
     public ResponseEntity<List<T>> list() {
         return new ResponseEntity<List<T>>(service.list(), HttpStatus.OK);
     }
 
-    @PreAuthorize("isAuthenticated()")
+//    @PreAuthorize("isAuthenticated()")
     @GetMapping("/history/{id}") //TODO check Pageable
     public ResponseEntity<List<T>> history(@PathVariable Long id) {
         return new ResponseEntity<List<T>>(service.getHistory(id), HttpStatus.OK);

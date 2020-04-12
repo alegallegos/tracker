@@ -24,8 +24,12 @@ public abstract class AbstractService<E> {
         return getRepository().save(entity);
     }
 
-    public void delete(E entity) {
-        getRepository().delete(entity);
+    public void delete(Long id) {
+        getRepository().deleteById(id);
+    }
+
+    public E get(Long id) {
+        return getRepository().findById(id).get();
     }
 
     public List<E> list() {
