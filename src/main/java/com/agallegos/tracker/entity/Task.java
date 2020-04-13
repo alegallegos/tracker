@@ -20,7 +20,8 @@ public class Task extends AuditModel {
     private Status status;
 
     @ManyToOne(optional = false, cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private Board board; //TODO change to relation to Card
+    @NotNull
+    private Card card;
 
     public Long getId() {
         return id;
@@ -54,12 +55,12 @@ public class Task extends AuditModel {
         this.type = type;
     }
 
-    public Board getBoard() {
-        return board;
+    public Card getCard() {
+        return card;
     }
 
-    public void setBoard(Board board) {
-        this.board = board;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public Status getStatus() {

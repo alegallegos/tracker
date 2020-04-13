@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -19,13 +20,13 @@ public abstract class AbstractCRUDController<T> {
 
 //    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
-    public ResponseEntity<T> create(@RequestBody T entity) { //TODO check @Valid annotation
+    public ResponseEntity<T> create(@RequestBody @Valid T entity) {
         return new ResponseEntity<T>(service.save(entity), HttpStatus.OK);
     }
 
 //    @PreAuthorize("isAuthenticated()")
     @PutMapping("/update")
-    public ResponseEntity<T> update(@RequestBody T entity) {
+    public ResponseEntity<T> update(@RequestBody @Valid T entity) {
         return new ResponseEntity<T>(service.update(entity), HttpStatus.OK);
     }
 

@@ -7,6 +7,7 @@ import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -21,11 +22,12 @@ public class CardList extends AuditModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
     @NotAudited
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @NotNull
     private Board board;
 
     @NotAudited
