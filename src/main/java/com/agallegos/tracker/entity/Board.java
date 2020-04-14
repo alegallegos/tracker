@@ -2,24 +2,22 @@ package com.agallegos.tracker.entity;
 
 import org.hibernate.envers.Audited;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 @Entity
 @Audited()
 public class Board extends AuditModel {
 
-    //TODO add restrictions to properties and validations
-    //TODO add list of allowed users and list of admin users when security is ready
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty
     private String name;
     private String description;
+    @ElementCollection
+    private List<String> users;
 
     public Long getId() {
         return id;
@@ -43,5 +41,13 @@ public class Board extends AuditModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<String> users) {
+        this.users = users;
     }
 }

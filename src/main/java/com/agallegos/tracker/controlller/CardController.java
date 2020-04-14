@@ -22,7 +22,7 @@ public class CardController extends AbstractCRUDController<Card> {
     }
 
     @PostMapping("/{listId}/add")
-    public ResponseEntity<Card> add(@PathVariable Long listId, @RequestBody @Valid Card entity) { //TODO check @Valid annotation
+    public ResponseEntity<Card> add(@PathVariable Long listId, @RequestBody @Valid Card entity) {
         return new ResponseEntity<Card>(((CardService)service).addToList(listId, entity), HttpStatus.OK);
     }
 
