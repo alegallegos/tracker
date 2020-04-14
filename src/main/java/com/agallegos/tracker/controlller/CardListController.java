@@ -22,6 +22,7 @@ public class CardListController extends AbstractCRUDController<CardList> {
         super(service);
     }
 
+    //    @PreAuthorize("isAuthenticated()")
     @GetMapping("/board/{boardId}")
     public ResponseEntity<List<CardList>> list(@PathVariable Long boardId) {
         return new ResponseEntity<List<CardList>>(((CardListService)service).getByBoard(boardId), HttpStatus.OK);
