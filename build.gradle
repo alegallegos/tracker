@@ -51,3 +51,8 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+task copyTask(type: Copy) {
+	from 'ui/dist/myApp/.'
+	into 'src/main/resources/static'
+}

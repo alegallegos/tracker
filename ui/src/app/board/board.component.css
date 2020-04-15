@@ -1,0 +1,9 @@
+h2 {
+  color: #454545;
+  margin-bottom: 0px;
+  padding-left: var(--mdc-layout-grid-margin-desktop, 24px);
+}
+
+.full-width {
+  width: 100%;
+}
