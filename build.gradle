@@ -53,7 +53,7 @@ test {
 }
 
 task copyTask(type: Copy) {
-	from 'ui/dist/myApp/.'
+	from 'dist/myApp/.'
 	into 'src/main/resources/static'
 }
 
