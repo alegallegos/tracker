@@ -56,3 +56,5 @@ task copyTask(type: Copy) {
 	from 'ui/dist/myApp/.'
 	into 'src/main/resources/static'
 }
+
+build.dependsOn copyTask
