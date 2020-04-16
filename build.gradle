@@ -57,4 +57,5 @@ task copyTask(type: Copy) {
 	into 'src/main/resources/static'
 }
 
+bootJar.dependsOn copyTask
 build.dependsOn copyTask
