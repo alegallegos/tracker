@@ -14,39 +14,40 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 
 export class BoardService {
+  url : string = 'https://tracker-agallegos.herokuapp.com';
 
   constructor(private http: HttpClient, private messageService: MessageService) { }
 
   getBoards(): Observable<Board[]> {
-    return this.http.get<Board[]>('http://localhost:8080/board/list').pipe(
+    return this.http.get<Board[]>(this.url + '/board/list').pipe(
       tap(_ => this.log('Fetched Boards')),
       catchError(this.handleError('getBoards', []))
     );
   }
 
   getBoard(id: string): Observable<Board> {
-    return this.http.get<Board>(`http://localhost:8080/board/get/${id}`).pipe(
+    return this.http.get<Board>(this.url + `/board/get/${id}`).pipe(
       tap(_ => this.log(`Fetched Board: id=${id}`)),
       catchError(this.handleError<Board>(`getBoard id=${id}`))
     );
   }
 
   addBoard(board: Board): Observable<Board> {
-    return this.http.post<Board>('http://localhost:8080/board/create', board, httpOptions).pipe(
+    return this.http.post<Board>(this.url + '/board/create', board, httpOptions).pipe(
       tap((board: Board) => this.log(`Added Board w/ name=${board.name}`)),
       catchError(this.handleError<Board>('addBoard'))
     );
   }
 
   updateBoard(board: Board): Observable<Board> {
-    return this.http.put<Board>('http://localhost:8080/board/update', board, httpOptions).pipe(
+    return this.http.put<Board>(this.url + '/board/update', board, httpOptions).pipe(
       tap(_ => this.log(`Updated Board: name=${board.name}`)),
       catchError(this.handleError<Board>(`updateBoard name=${board.name}`))
     );
   }
 
   deleteBoard(board: Board): Observable<Board> {
-    return this.http.delete<Board>(`http://localhost:8080/board/delete/${board.id}`, httpOptions).pipe(
+    return this.http.delete<Board>(this.url + `/board/delete/${board.id}`, httpOptions).pipe(
       tap(_ => this.log(`Deleted Board: name=${board.name}`)),
       catchError(this.handleError<Board>(`deleteBoard name=${board.name}`))
     );

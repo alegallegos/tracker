@@ -227,26 +227,27 @@ var BoardService = /** @class */ (function () {
     function BoardService(http, messageService) {
         this.http = http;
         this.messageService = messageService;
+        this.url = 'https://tracker-agallegos.herokuapp.com';
     }
     BoardService.prototype.getBoards = function () {
         var _this = this;
-        return this.http.get('http://localhost:8080/board/list').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log('Fetched Boards'); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('getBoards', [])));
+        return this.http.get(this.url + '/board/list').pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log('Fetched Boards'); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('getBoards', [])));
     };
     BoardService.prototype.getBoard = function (id) {
         var _this = this;
-        return this.http.get("http://localhost:8080/board/get/" + id).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Fetched Board: id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("getBoard id=" + id)));
+        return this.http.get(this.url + ("/board/get/" + id)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Fetched Board: id=" + id); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("getBoard id=" + id)));
     };
     BoardService.prototype.addBoard = function (board) {
         var _this = this;
-        return this.http.post('http://localhost:8080/board/create', board, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (board) { return _this.log("Added Board w/ name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('addBoard')));
+        return this.http.post(this.url + '/board/create', board, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (board) { return _this.log("Added Board w/ name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError('addBoard')));
     };
     BoardService.prototype.updateBoard = function (board) {
         var _this = this;
-        return this.http.put('http://localhost:8080/board/update', board, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Updated Board: name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("updateBoard name=" + board.name)));
+        return this.http.put(this.url + '/board/update', board, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Updated Board: name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("updateBoard name=" + board.name)));
     };
     BoardService.prototype.deleteBoard = function (board) {
         var _this = this;
-        return this.http.delete("http://localhost:8080/board/delete/" + board.id, httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Deleted Board: name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("deleteBoard name=" + board.name)));
+        return this.http.delete(this.url + ("/board/delete/" + board.id), httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["tap"])(function (_) { return _this.log("Deleted Board: name=" + board.name); }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("deleteBoard name=" + board.name)));
     };
     BoardService.prototype.handleError = function (operation, result) {
         var _this = this;
